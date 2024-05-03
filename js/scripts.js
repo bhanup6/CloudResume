@@ -41,7 +41,15 @@ function toggle_onclick($win, $navbar, width) {
         $navbar.css({ left: '0px' });
     }
 }
-
+const counter = document.querySelector(".counter-number");
+async function updateCounter() {
+    let response = await fetch(
+        "https://v7akbrstqlpdscuvepsgeuihsu0ohxku.lambda-url.us-east-1.on.aws/"
+    );
+    let data = await response.json();
+    counter.innerHTML = `Views: ${data}`;
+}
+updateCounter();
 var typed = new Typed('#typed', {
     strings: [
         'VMWare Infra Architect',
@@ -75,12 +83,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
-const counter = document.querySelector(".counter-number");
-async function updateCounter() {
-    let response = await fetch(
-        "https://v7akbrstqlpdscuvepsgeuihsu0ohxku.lambda-url.us-east-1.on.aws/"
-    );
-    let data = await response.json();
-    counter.innerHTML = `Views: ${data}`;
-}
-updateCounter();
